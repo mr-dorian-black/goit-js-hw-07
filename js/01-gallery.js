@@ -3,13 +3,6 @@ import { galleryItems } from './gallery-items.js';
 const gallery = document.querySelector('.gallery');
 let instance;
 
-const openModal = (link) => {
-     instance = basicLightbox.create(`<img src="${link}">`);
-     document.addEventListener('keydown', closeModal);
-     instance.show();
-}
-
-
 const images = galleryItems.map(item => {
      let liItem = document.createElement('li');
      liItem.classList.add('gallery__item');
@@ -31,10 +24,11 @@ const images = galleryItems.map(item => {
 
 gallery.append(...images);
 
-
-function openImage(event) {
+const openModal = (event) => {
      event.preventDefault();
-     openModal(event.target.dataset.source);
+     instance = basicLightbox.create(`<img src="${event.target.dataset.source}">`);
+     document.addEventListener('keydown', closeModal);
+     instance.show();
 }
 
 function closeModal(event) {
@@ -44,4 +38,4 @@ function closeModal(event) {
      }
 }
 
-gallery.addEventListener('click', openImage);
+gallery.addEventListener('click', openModal);
