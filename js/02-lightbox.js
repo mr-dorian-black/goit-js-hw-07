@@ -26,12 +26,5 @@ let options = {
      captionsData: 'alt',
      captionDelay: 250,
 };
-let lightbox = new SimpleLightbox('.gallery a', options);
 
-function openImage(event) {
-     event.preventDefault();
-     lightbox.open();
-}
-
-
-gallery.addEventListener('click', openImage);
+new SimpleLightbox('.gallery a', options);
