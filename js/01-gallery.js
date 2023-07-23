@@ -25,8 +25,11 @@ const images = galleryItems.map(item => {
 gallery.append(...images);
 
 const openModal = (event) => {
+     let options = {
+          onClose: () => document.removeEventListener('keydown', closeModal)
+     }
      event.preventDefault();
-     instance = basicLightbox.create(`<img src="${event.target.dataset.source}">`);
+     instance = basicLightbox.create(`<img src="${event.target.dataset.source}">`, options);
      document.addEventListener('keydown', closeModal);
      instance.show();
 }
@@ -34,10 +37,6 @@ const openModal = (event) => {
 function closeModal(event) {
      if (event.code === 'Escape') {
           instance.close();
-          document.removeEventListener('keydown', closeModal);
-     }
-     if (!instance.visible()) {
-          document.removeEventListener('keydown', closeModal);
      }
 }
 
