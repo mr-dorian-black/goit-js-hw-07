@@ -36,6 +36,9 @@ function closeModal(event) {
           instance.close();
           document.removeEventListener('keydown', closeModal);
      }
+     if (!instance.visible()) {
+          document.removeEventListener('keydown', closeModal);
+     }
 }
 
 gallery.addEventListener('click', openModal);
